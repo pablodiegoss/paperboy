@@ -17,8 +17,6 @@ GameObject::GameObject(){}
 
 GameObject::~GameObject(){}
 
-//void GameObject::update(double timeElapsed){}
-
 std::string GameObject::getName(){
     return name;
 }

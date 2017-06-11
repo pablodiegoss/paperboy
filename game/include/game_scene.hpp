@@ -3,9 +3,13 @@
 
 #include "collision_manager.hpp"
 #include "audio.hpp"
-
+#include "player.hpp"
+#include "background.hpp"
+#include "newspaper.hpp"
+#include "text.hpp"
+#include "log.h"
+#include <typeinfo>
 #include <vector>
-
 using namespace engine;
 
 class GameScene: public Scene{
@@ -18,7 +22,9 @@ public:
     void unload();
     void verifyWinOrLose();
 private:
+    void cleanObjects();
     std::vector<GameObject*> gameObjectsList;
+    Text* hud;
 };
 
 #endif
