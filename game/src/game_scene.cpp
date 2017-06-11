@@ -48,7 +48,7 @@ void GameScene::verifyWinOrLose(){
 
 
 void GameScene::load(){
-    Player* player = new Player("assets/sprites/paperboy.png", 400, 500, 40,60);
+    Player* player = new Player("assets/sprites/paperboy2.png", 400, 500, 40,60);
     Background* background = new Background("assets/sprites/background.png", 0,0, 640,480);
     hud = new Text("Score", "assets/fonts/font.ttf", 30, false, new Color(100,100,100,255), new Color(0,0,0,0));
 
