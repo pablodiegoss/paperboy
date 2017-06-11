@@ -38,7 +38,7 @@ void Player::walk(double timeElapsed){
         }
         animator->setInterval("left");
     }else{
-        animator->setInterval("up");
+        animator->setInterval("right");
     }
     if(CollisionManager::instance.verifyCollisionWithWalls(this)){
         setPositionX(getPositionX()+(inc*(0-1)));

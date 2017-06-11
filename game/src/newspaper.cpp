@@ -5,8 +5,10 @@ Newspaper::Newspaper(std::string objectName, double positionX, double positionY,
                                                                          positionX,
                                                                          positionY,
                                                                          width, height){
-    animator = new Animation(objectName, 1, 1, 1);
-    animator->setTotalTime(0.3);
+    animator = new Animation(objectName, 1, 4, 0.1);
+    animator->setTotalTime(0.1);
+    animator->addAction("roll", 0,3);
+    animator->setInterval("roll");
 
 }
 

@@ -20,15 +20,15 @@ void Background::update(double timeElapsed){
 
 void Background::move(double timeElapsed){
     auto inc = 0.05*timeElapsed;
-    if(InputManager::instance.isKeyPressed(InputManager::KeyPress::KEY_PRESS_UP)){
-        setPositionY(getPositionY()+inc);
-    }
+    setPositionY(getPositionY()+inc);
+    setPositionX(getPositionX()-inc);
+
     if(InputManager::instance.isKeyPressed(InputManager::KeyPress::KEY_PRESS_RIGHT)){
         // animator->setInterval("right");
         inc = inc * (0-1);
         setPositionX(getPositionX()+inc);
     }else if(InputManager::instance.isKeyPressed(InputManager::KeyPress::KEY_PRESS_LEFT)){
-        setPositionX(getPositionX()+inc);
+        setPositionX(getPositionX()+inc*2);
     }
 }
 

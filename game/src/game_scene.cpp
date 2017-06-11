@@ -24,7 +24,7 @@ void GameScene::update(double timeElapsed){
         if(typeid(*gameObject) == typeid(Player)){
             Player* player = ((Player*)(gameObject));
             if(player->isShooting()){
-                Newspaper* newspaper = new Newspaper("assets/sprites/MYP.png", player->getPositionX(),player->getPositionY(), 10,10);
+                Newspaper* newspaper = new Newspaper("assets/sprites/newspaper.png", player->getPositionX(),player->getPositionY(), 10,10);
                 gameObjectsList.push_back(newspaper);
             }
         }
