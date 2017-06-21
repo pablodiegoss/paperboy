@@ -16,11 +16,13 @@ public:
     void update(double timeElapsed);
     void draw();
     void init();
+    bool isComplete();
 private:
     void move(double timeElapsed);
     void moveEverythingX(double x);
     void moveEverythingY(double y);
     Animation* animator;
+    bool complete;
     std::vector<GameObject*> gameObjectsList;
 };
 #endif

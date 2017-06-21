@@ -5,15 +5,15 @@ Player::Player(std::string objectName, double positionX, double positionY,
                                                                          positionX,
                                                                          positionY,
                                                                          width, height){
-    animator = new Animation(objectName, 1, 12, 0.5);
+    animator = new Animation(objectName, 3, 6, 0.5);
     animator->setTotalTime(1);
-    animator->setDrawSize(80,80);
+    animator->setDrawSize(136,120);
     shooting = false;
     dead = false;
     animator->addAction("up",0,3);
     animator->addAction("right",4,7);
     animator->addAction("left",8,11);
-    animator->addAction("die",0,11);
+    animator->addAction("die",12,16);
     shootingTimer = new Timer();
     deathTimer = new Timer();
     shootingTimer->start();
@@ -28,7 +28,7 @@ void Player::update(double timeElapsed){
         shoot();
     }else{
         if(deathTimer->elapsed_time() > 3000){
-            WARN("MORREU");
+            setEnabled(false);
         }
     }
     animator->update();
@@ -79,6 +79,6 @@ bool Player::isDead(){
 }
 void Player::draw(){
     INFO("Player DRAW");
-    animator->draw(getPositionX()-20, getPositionY()-5);
+    animator->draw(getPositionX()-45, getPositionY()-50);
     animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }

@@ -44,12 +44,17 @@ void GameScene::cleanObjects(){
     }
 }
 void GameScene::verifyWinOrLose(){
+    if(!player->isEnabled()){
+        WARN("TESTE");
+    }else if(background->isComplete()){
+
+    }
 }
 
 
 void GameScene::load(){
     player = new Player("assets/sprites/paperboy2.png", 400, 500, 45,65);
-    Background* background = new Background("assets/sprites/background.png", 0,-4200, 4000,5000);
+    background = new Background("assets/sprites/background.png", 0,-4200, 4000,5000);
     hud = new Text("Score", "assets/fonts/font.ttf", 30, false, new Color(100,100,100,255), new Color(0,0,0,0));
 
     gameObjectsList.push_back(background);

@@ -26,6 +26,7 @@ void AnimationManager::draw_quads(){
 }
 
 void AnimationManager::draw_colliders(){
+    SDL_SetRenderDrawColor(WindowManager::getGameCanvas(), 0, 0, 0, 255);
     for(SDL_Rect * quad : colliderRects) {
         SDL_RenderDrawRect(WindowManager::getGameCanvas(), quad);
     }
