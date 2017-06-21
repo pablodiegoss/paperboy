@@ -26,12 +26,16 @@ using namespace engine;
             exit(-1);
         }
 
-        lenght.first = image->w;
-        lenght.second = image->h;
+        drawWidth = lenght.first = image->w;
+        drawHeight = lenght.second = image->h;
+
         SDL_FreeSurface(image);
 
     }
-
+    void Sprite::setDrawSize(int width, int height){
+        drawHeight = height;
+        drawWidth = width;
+    }
     void Sprite::shutdown(){
         INFO("Destroy sprite.");
         SDL_DestroyTexture(texture);
@@ -45,7 +49,7 @@ using namespace engine;
         clipRect = {0, 0, lenght.first, lenght.second};
 
         // Rendering in screen
-        renderQuad = {axis.first, axis.second, clipRect.w, clipRect.h };
+        renderQuad = {axis.first, axis.second, drawWidth, drawHeight};
 
         SDL_RenderCopy(WindowManager::getGameCanvas(), texture, &clipRect, &renderQuad);
     }

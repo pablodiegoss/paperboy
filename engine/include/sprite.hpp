@@ -17,10 +17,12 @@ namespace engine{
         virtual void init();
         virtual void draw(int x, int y);
         virtual void shutdown();
-
+        void setDrawSize(int width, int height);
     protected:
         SDL_Texture * texture;
         std::string directory;
+        int drawWidth;
+        int drawHeight;
         std::pair<int, int> lenght; // Width and height from image.
         std::pair<int, int> axis;
         SDL_Rect renderQuad;

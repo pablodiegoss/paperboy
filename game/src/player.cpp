@@ -80,5 +80,5 @@ bool Player::isDead(){
 void Player::draw(){
     INFO("Player DRAW");
     animator->draw(getPositionX()-55, getPositionY()-50);
-    animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
+    //animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }

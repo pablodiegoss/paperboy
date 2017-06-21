@@ -18,5 +18,5 @@ void Wall::update(double timeElapsed){
 
 void Wall::draw(){
     animator->draw(getPositionX(), getPositionY());
-    animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
+    //animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }

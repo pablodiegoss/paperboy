@@ -9,6 +9,7 @@ using namespace engine;
 LoseScene::LoseScene(int id) : Scene(id){
     selectButton = 1;
     background = new Sprite("assets/sprites/loser_screen.png");
+    background->setDrawSize(960,600);
     }
 
 LoseScene::~LoseScene(){
@@ -16,7 +17,7 @@ LoseScene::~LoseScene(){
 
 void LoseScene::draw(){
     background->draw(0,0);
-    hud->draw(400,175);
+    hud->draw(400,120);
 }
 
 void LoseScene::update(double timeElapsed){
@@ -36,4 +37,5 @@ void LoseScene::selectAction(){
 }
 
 void LoseScene::unload(){
+        CollisionManager::instance.resetPoints();
 }

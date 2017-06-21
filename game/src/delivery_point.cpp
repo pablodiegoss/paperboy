@@ -18,5 +18,5 @@ void DeliveryPoint::update(double timeElapsed){
 
 void DeliveryPoint::draw(){
     animator->draw(getPositionX(), getPositionY());
-    animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
+    //animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }

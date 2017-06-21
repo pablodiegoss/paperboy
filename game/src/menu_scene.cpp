@@ -8,6 +8,7 @@ using namespace engine;
 
 MenuScene::MenuScene(int id) : Scene(id){
         background = new Sprite("assets/sprites/menu.png");
+        background->setDrawSize(960,600);
 }
 
 MenuScene::~MenuScene(){

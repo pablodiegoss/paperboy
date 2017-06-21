@@ -9,6 +9,7 @@ using namespace engine;
 WinScene::WinScene(int id) : Scene(id){
     selectButton = 1;
     background = new Sprite("assets/sprites/winner_screen.png");
+    background->setDrawSize(960,600);
 }
 
 WinScene::~WinScene(){
@@ -36,4 +37,5 @@ void WinScene::selectAction(){
 }
 
 void WinScene::unload(){
+        CollisionManager::instance.resetPoints();
 }

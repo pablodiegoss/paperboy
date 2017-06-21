@@ -2,7 +2,7 @@
 
 namespace engine{
 
-    const std::string GAME_NAME = "Default";
+    const std::string GAME_NAME = "PaperBoy 2";
     const std::pair <int, int> WINDOW_SIZE (960, 600);
 
     SceneManager* sceneManager;

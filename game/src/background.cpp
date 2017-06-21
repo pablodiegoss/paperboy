@@ -15,6 +15,10 @@ Background::Background(std::string objectName, double positionX, double position
     Wall* lixeira = new Wall("assets/sprites/parede2.png", xArvore+150, yArvore+15, 50, 70);
     Wall* metadeConstrucao = new Wall("assets/sprites/parede2.png", xArvore-450, yArvore-155, 130, 420);
     Wall* metadeConstrucao2 = new Wall("assets/sprites/parede2.png", xArvore-280, yArvore-155, 168, 260);
+    Wall* metadeConstrucao3 = new Wall("assets/sprites/parede2.png", xArvore-720, yArvore-30, 160, 370);
+    Wall* metadeConstrucao4 = new Wall("assets/sprites/parede2.png", xArvore-720, yArvore-30, 100, 490);
+    Wall* metadeConstrucao5 = new Wall("assets/sprites/parede2.png", xArvore-720, yArvore-30, 450, 150);
+
     Wall* casa1_1 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570, 580);
     Wall* casa1_2 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570+150, 580-30);
     Wall* casa1_3 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570+200, 580-130);
@@ -47,7 +51,7 @@ Background::Background(std::string objectName, double positionX, double position
     gameObjectsList.push_back(arvore);
     gameObjectsList.push_back(lixeira);
     gameObjectsList.push_back(mulher);
-    gameObjectsList.push_back(metadeConstrucao);gameObjectsList.push_back(metadeConstrucao2);
+    gameObjectsList.push_back(metadeConstrucao);gameObjectsList.push_back(metadeConstrucao2);gameObjectsList.push_back(metadeConstrucao3);gameObjectsList.push_back(metadeConstrucao4);gameObjectsList.push_back(metadeConstrucao5);
     gameObjectsList.push_back(casa1_1);gameObjectsList.push_back(casa1_2);gameObjectsList.push_back(casa1_3);gameObjectsList.push_back(casa1_4);gameObjectsList.push_back(casa1_5);
     gameObjectsList.push_back(casa2_1);gameObjectsList.push_back(casa2_2);
     gameObjectsList.push_back(casa3_1);gameObjectsList.push_back(casa3_2);gameObjectsList.push_back(casa3_3);gameObjectsList.push_back(casa3_4);
