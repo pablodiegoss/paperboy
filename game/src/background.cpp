@@ -10,9 +10,9 @@ Background::Background(std::string objectName, double positionX, double position
     complete = false;
     int xArvore = 680;
     int yArvore = -610;
-    Wall* teste = new Wall("assets/sprites/parede2.png", 100, 50, 60, 60);
+
     Wall* arvore = new Wall("assets/sprites/parede2.png", xArvore, yArvore, 70, 115);
-    Wall* lixeira = new Wall("assets/sprites/parede2.png", xArvore+140, yArvore+15, 50, 70);
+    Wall* lixeira = new Wall("assets/sprites/parede2.png", xArvore+150, yArvore+15, 50, 70);
     Wall* metadeConstrucao = new Wall("assets/sprites/parede2.png", xArvore-450, yArvore-155, 130, 420);
     Wall* metadeConstrucao2 = new Wall("assets/sprites/parede2.png", xArvore-280, yArvore-155, 168, 260);
     Wall* casa1_1 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570, 580);
@@ -20,6 +20,7 @@ Background::Background(std::string objectName, double positionX, double position
     Wall* casa1_3 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570+200, 580-130);
     Wall* casa1_4 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570+400, 580-280);
     Wall* casa1_5 = new Wall("assets/sprites/parede2.png", xArvore-226, yArvore-920, 570+550, 580-400);
+    Wall* mulher = new Wall("assets/sprites/parede2.png", xArvore+492, yArvore-462, 120, 75);
     Wall* cortador = new Wall("assets/sprites/parede2.png", xArvore+1050, yArvore-1048, 85, 90);
     Wall* casa2_1 = new Wall("assets/sprites/parede2.png", xArvore+340, yArvore-1700, 760, 680);
     Wall* casa2_2 = new Wall("assets/sprites/parede2.png", xArvore+340, yArvore-1700, 830, 680-220);
@@ -28,9 +29,24 @@ Background::Background(std::string objectName, double positionX, double position
     Wall* casa3_3 = new Wall("assets/sprites/parede2.png", xArvore+1150, yArvore-2560, 430+550, 830-260);
     Wall* casa3_4 = new Wall("assets/sprites/parede2.png", xArvore+1150, yArvore-2360, 430+789, 830-670);
 
-    gameObjectsList.push_back(teste);
+    DeliveryPoint* tapeteCasa1 = new DeliveryPoint("assets/sprites/parede2.png", xArvore+476, yArvore-568, 110, 64);
+    Wall* correioCasa1Wall = new Wall("assets/sprites/parede2.png", xArvore+774, yArvore-628, 44, 74);
+    Wall* correioCasa3Wall = new Wall("assets/sprites/parede2.png", xArvore+2234, yArvore-2146, 44, 74);
+    DeliveryPoint* correioCasa1Point = new DeliveryPoint("assets/sprites/parede2.png", xArvore+774, yArvore-628, 54, 74);
+    DeliveryPoint* correioCasa3Point = new DeliveryPoint("assets/sprites/parede2.png", xArvore+2234, yArvore-2146, 54, 74);
+    DeliveryPoint* tapeteCasa3 = new DeliveryPoint("assets/sprites/parede2.png", xArvore+2324, yArvore-2250, 110, 64);
+
+    pointsList.push_back(tapeteCasa1);
+    pointsList.push_back(tapeteCasa3);
+    pointsList.push_back(correioCasa3Point);
+    pointsList.push_back(correioCasa1Point);
+
+    gameObjectsList.push_back(correioCasa3Wall);
+    gameObjectsList.push_back(correioCasa1Wall);
+
     gameObjectsList.push_back(arvore);
     gameObjectsList.push_back(lixeira);
+    gameObjectsList.push_back(mulher);
     gameObjectsList.push_back(metadeConstrucao);gameObjectsList.push_back(metadeConstrucao2);
     gameObjectsList.push_back(casa1_1);gameObjectsList.push_back(casa1_2);gameObjectsList.push_back(casa1_3);gameObjectsList.push_back(casa1_4);gameObjectsList.push_back(casa1_5);
     gameObjectsList.push_back(casa2_1);gameObjectsList.push_back(casa2_2);
@@ -39,7 +55,9 @@ Background::Background(std::string objectName, double positionX, double position
     gameObjectsList.push_back(cortador);
 
 
-
+    for(auto gameObject : pointsList) {
+        CollisionManager::instance.addDeliveryPoint(gameObject);
+    }
 
     for(auto gameObject : gameObjectsList) {
         CollisionManager::instance.addWall(gameObject);
@@ -55,11 +73,15 @@ void Background::update(double timeElapsed){
     for(auto gameObject : gameObjectsList) {
         (*gameObject).update(timeElapsed);
     }
+
+    for(auto gameObject : pointsList) {
+        (*gameObject).update(timeElapsed);
+    }
 }
 
 void Background::move(double timeElapsed){
     //auto inc = 0.09*timeElapsed;
-    auto inc = 0.20*timeElapsed;
+    auto inc = 0.13*timeElapsed;
     moveEverythingY(inc);
     moveEverythingX(-inc);
 
@@ -73,22 +95,25 @@ void Background::move(double timeElapsed){
 
     if(complete == false && getPositionX()< -3130 && getPositionY() > -840){
         complete = true;
-        WARN("HUEHEUHE");
     }
 }
 
 void Background::moveEverythingX(double inc){
-    WARN("X:" + std::to_string(getPositionX()));
     setPositionX(getPositionX()+inc);
     for(auto gameObject : gameObjectsList) {
+        (*gameObject).setPositionX((*gameObject).getPositionX()+inc);
+    }
+    for(auto gameObject : pointsList) {
         (*gameObject).setPositionX((*gameObject).getPositionX()+inc);
     }
 }
 
 void Background::moveEverythingY(double inc){
-    WARN("Y:" + std::to_string(getPositionY()));
     setPositionY(getPositionY()+inc);
     for(auto gameObject : gameObjectsList) {
+        (*gameObject).setPositionY((*gameObject).getPositionY()+inc);
+    }
+    for(auto gameObject : pointsList) {
         (*gameObject).setPositionY((*gameObject).getPositionY()+inc);
     }
 }
@@ -96,6 +121,9 @@ void Background::draw(){
     INFO("Background DRAW");
     animator->draw_instant(getPositionX(), getPositionY());
     for(auto gameObject : gameObjectsList) {
+        (*gameObject).draw();
+    }
+    for(auto gameObject : pointsList) {
         (*gameObject).draw();
     }
 }

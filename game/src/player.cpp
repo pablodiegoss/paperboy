@@ -62,7 +62,7 @@ void Player::shoot(){
     if(shooting){
         shooting = false;
     }
-    if(shootingTimer->elapsed_time() > 2000){
+    if(shootingTimer->elapsed_time() > 1000){
         if(InputManager::instance.isKeyPressed(InputManager::KeyPress::KEY_PRESS_SPACE)){
             shooting = true;
             // animator->setInterval("right");
@@ -79,6 +79,6 @@ bool Player::isDead(){
 }
 void Player::draw(){
     INFO("Player DRAW");
-    animator->draw(getPositionX()-45, getPositionY()-50);
+    animator->draw(getPositionX()-55, getPositionY()-50);
     animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }

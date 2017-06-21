@@ -8,6 +8,9 @@ CollisionManager CollisionManager::instance;
     void CollisionManager::addWall(GameObject* g){
         wallList.push_back(g);
     }
+    void CollisionManager::addDeliveryPoint(GameObject* g){
+        deliveryPoints.push_back(g);
+    }
 
     bool CollisionManager::verifyCollisionWithWalls(GameObject* g1){
         for(GameObject * wall : wallList) {
@@ -18,8 +21,25 @@ CollisionManager CollisionManager::instance;
         return false;
     }
 
+    bool CollisionManager::verifyNewspaperCollisionWithWalls(GameObject* g){
+        for(GameObject * wall : wallList) {
+            if(verifyCollision(wall, g)){
+                return true;
+            }
+        }
+        return false;
+    }
+    bool CollisionManager::verifyCollisionWithDeliveryPoint(GameObject* g){
+        for(GameObject * point : deliveryPoints) {
+            if(verifyCollision(point, g)){
+                return true;
+            }
+        }
+        return false;
+    }
     void CollisionManager::resetLists(){
         wallList.clear();
+        deliveryPoints.clear();
     }
 
     bool CollisionManager::verifyCollision( GameObject* g1, GameObject* g2){
@@ -46,4 +66,14 @@ CollisionManager CollisionManager::instance;
         if( leftA >= rightB ){ return false;}
         //If none of the sides from A are outside B
         return true;
+    }
+    
+    int CollisionManager::getPoints(){
+        return points;
+    }
+    void CollisionManager::addPoints(int inc){
+        points = points + inc;
+    }
+    void CollisionManager::resetPoints(){
+        points = 0;
     }

@@ -30,6 +30,10 @@ void GameScene::update(double timeElapsed){
         }
     }
 
+    if(points != CollisionManager::instance.getPoints()){
+        points = CollisionManager::instance.getPoints();
+        hud = new Text("Score: "+ std::to_string(points), "assets/fonts/font.ttf", 30, false, new Color(100,100,100,255), new Color(0,0,0,0));
+    }
     cleanObjects();
     verifyWinOrLose();
 }
@@ -45,17 +49,18 @@ void GameScene::cleanObjects(){
 }
 void GameScene::verifyWinOrLose(){
     if(!player->isEnabled()){
-        WARN("TESTE");
+        getSceneManager()->loadScene(2);
     }else if(background->isComplete()){
-
+        getSceneManager()->loadScene(3);
     }
 }
 
 
 void GameScene::load(){
-    player = new Player("assets/sprites/paperboy2.png", 400, 500, 45,65);
+    player = new Player("assets/sprites/paperboy2.png", 400, 500, 35,65);
     background = new Background("assets/sprites/background.png", 0,-4200, 4000,5000);
-    hud = new Text("Score", "assets/fonts/font.ttf", 30, false, new Color(100,100,100,255), new Color(0,0,0,0));
+    points = CollisionManager::instance.getPoints();
+    hud = new Text("Score: "+ std::to_string(points), "assets/fonts/font.ttf", 30, false, new Color(100,100,100,255), new Color(0,0,0,0));
 
     gameObjectsList.push_back(background);
 

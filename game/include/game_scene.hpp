@@ -27,6 +27,7 @@ private:
     Player* player;
     Background* background;
     Text* hud;
+    int points;
 };
 
 #endif

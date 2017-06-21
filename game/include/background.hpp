@@ -6,7 +6,7 @@
 #include "input_manager.hpp"
 #include "collision_manager.hpp"
 #include "wall.hpp"
-
+#include "delivery_point.hpp"
 using namespace engine;
 
 class Background: public GameObject{
@@ -24,5 +24,6 @@ private:
     Animation* animator;
     bool complete;
     std::vector<GameObject*> gameObjectsList;
+    std::vector<GameObject*> pointsList;
 };
 #endif
