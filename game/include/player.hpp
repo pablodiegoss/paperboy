@@ -6,7 +6,7 @@
 #include "game_object.hpp"
 #include "collision_manager.hpp"
 #include "timer.hpp"
-
+#include "log.h"
 using namespace engine;
 
 class Player: public GameObject{
@@ -17,11 +17,15 @@ public:
     void draw();
     void init();
     bool isShooting();
+    bool isDead();
 private:
     void walk(double timeElapsed);
     void shoot();
     Animation* animator;
     bool shooting;
     Timer* shootingTimer;
+    Timer* deathTimer;
+    bool dead;
+
 };
 #endif

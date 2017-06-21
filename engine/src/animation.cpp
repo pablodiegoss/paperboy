@@ -35,8 +35,8 @@ void Animation::init(){
     lenght.first = image->w;
     lenght.second = image->h;
 
-    widthFrame = lenght.first/matrix.second;
-    heightFrame = lenght.second/matrix.first;
+    drawWidth = widthFrame = lenght.first/matrix.second;
+    drawHeight = heightFrame = lenght.second/matrix.first;
 
     quantity = static_cast<int>(lenght.first/matrix.second * lenght.second/matrix.first);
 
@@ -61,11 +61,14 @@ void Animation::update(){
     clipRect = {X*widthFrame, Y*heightFrame, widthFrame, heightFrame};
     DEBUG("Axis in X:" << X*widthFrame << " Axis in Y:" << Y*heightFrame << " Position:" << currentPositionFrame);
 }
-
+void Animation::setDrawSize(int width, int height){
+    drawWidth = width;
+    drawHeight = height;
+}
 void Animation::draw(int x, int y){
     INFO("ANIMATOR DRAW");
     // Rendering in screen
-    renderQuad = {x, y, clipRect.w, clipRect.h };
+    renderQuad = {x, y, drawWidth, drawHeight};
     DEBUG("X: " + std::to_string(axis.first));
     DEBUG("Y: " + std::to_string(axis.second));
 
@@ -92,7 +95,11 @@ void Animation::next(){
     currentPositionFrame ++;
 
     if(currentPositionFrame > interval.second.second){
-       currentPositionFrame = interval.second.first;
+        if(actualAction != "die"){
+            currentPositionFrame = interval.second.first;
+        }else{
+            currentPositionFrame = interval.second.second;
+        }
     }
 }
 
@@ -101,6 +108,7 @@ void Animation::setCurrentPositionFrame(int positionFrame){
 }
 
 void Animation::setInterval(std::string action){
+    actualAction = action;
     if(action != interval.first){
         startTime = SDL_GetTicks();
         stepTime = startTime;

@@ -24,6 +24,7 @@ public:
 private:
     void cleanObjects();
     std::vector<GameObject*> gameObjectsList;
+    Player* player;
     Text* hud;
 };
 

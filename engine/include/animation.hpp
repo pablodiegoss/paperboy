@@ -27,12 +27,13 @@ namespace engine{
         void setInterval(std::string action);
         void addAction(std::string name_action, int initial, int last);
         std::pair<std::string, std::pair<int, int>> getInterval();
-
+        void setDrawSize(int width, int height);
     private:
         int currentPositionFrame;
         int quantity;
-        int widthFrame;
-        int heightFrame;
+        int widthFrame, drawWidth;
+        int heightFrame, drawHeight;
+        std::string actualAction;
         double totalTime;
         double startTime;
         double timeElapsed;

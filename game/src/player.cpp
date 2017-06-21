@@ -7,11 +7,15 @@ Player::Player(std::string objectName, double positionX, double positionY,
                                                                          width, height){
     animator = new Animation(objectName, 1, 12, 0.5);
     animator->setTotalTime(1);
+    animator->setDrawSize(80,80);
     shooting = false;
+    dead = false;
     animator->addAction("up",0,3);
     animator->addAction("right",4,7);
     animator->addAction("left",8,11);
+    animator->addAction("die",0,11);
     shootingTimer = new Timer();
+    deathTimer = new Timer();
     shootingTimer->start();
 }
 
@@ -19,8 +23,14 @@ Player::~Player(){}
 
 void Player::update(double timeElapsed){
     // To Do: Use Time Elapsed in inc.
-    walk(timeElapsed);
-    shoot();
+    if(!dead){
+        walk(timeElapsed);
+        shoot();
+    }else{
+        if(deathTimer->elapsed_time() > 3000){
+            WARN("MORREU");
+        }
+    }
     animator->update();
 }
 
@@ -40,8 +50,11 @@ void Player::walk(double timeElapsed){
     }else{
         animator->setInterval("right");
     }
-    if(CollisionManager::instance.verifyCollisionWithWalls(this)){
-        setPositionX(getPositionX()+(inc*(0-1)));
+    if(CollisionManager::instance.verifyCollisionWithWalls(this) && isEnabled()){
+        deathTimer->start();
+        dead = true;
+        animator->setTotalTime(1);
+        animator->setInterval("die");
     }
 }
 
@@ -61,7 +74,11 @@ void Player::shoot(){
 bool Player::isShooting(){
     return shooting;
 }
+bool Player::isDead(){
+    return dead;
+}
 void Player::draw(){
     INFO("Player DRAW");
-    animator->draw(getPositionX(), getPositionY());
+    animator->draw(getPositionX()-20, getPositionY()-5);
+    animator->draw_collider(getPositionX(), getPositionY(), getWidth(), getHeight());
 }
