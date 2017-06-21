@@ -12,13 +12,13 @@ int main(int, char**){
     loadEngine();
     MenuScene* menuScene = new MenuScene(0);
     GameScene* gameScene = new GameScene(1);
-    //LoseScene* loseScene = new LoseScene(2);
-    //WinScene* winScene = new WinScene(3);
+    LoseScene* loseScene = new LoseScene(2);
+    WinScene* winScene = new WinScene(3);
 
     getSceneManager()->addScene(menuScene);
     getSceneManager()->addScene(gameScene);
-    //getSceneManager()->addScene(loseScene);
-    //getSceneManager()->addScene(winScene);
+    getSceneManager()->addScene(loseScene);
+    getSceneManager()->addScene(winScene);
 
     getSceneManager()->loadScene(0);
 

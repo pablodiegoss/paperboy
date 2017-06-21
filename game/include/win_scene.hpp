@@ -7,6 +7,8 @@
 #include "game_object.hpp"
 #include "color.hpp"
 #include "audio.hpp"
+#include "text.hpp"
+#include "collision_manager.hpp"
 
 #include <vector>
 
@@ -26,9 +28,8 @@ private:
     int selectButton;
     std::vector<std::pair<int, GameObject*>> gameObjectsList;
     Sprite * background;
-    Color * select;
-    Color * notSelect;
-    Audio * soundEffect;
+    Text* hud;
+
 };
 
 #endif
